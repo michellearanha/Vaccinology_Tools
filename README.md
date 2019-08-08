@@ -39,11 +39,11 @@ File with sequences listed in fasta format
 
 File with a list of heptad registers of all sequences (predicted or actual heptad site of the first residue of each sequence
 
--c [<enum>] (Identity) (Input)
+-c [<enum>] (Input)
   
 Criteria : Identity, Similarity
 
--t [<Percentage>] (40) (Optional)
+-t [<Percentage>] (Optional)
   
 threshold percentage:  sequences that share "criteria" greater than threshold will be saved in a separate folder.
 
@@ -51,7 +51,7 @@ threshold percentage:  sequences that share "criteria" greater than threshold wi
 
 Directory of EMBOSS binaries
 
--A [<enum>] (Needle) (Input)
+-A [<enum>] (Input)
   
 Global alignment - Needleman-Wunsch algorithm : needle
 
