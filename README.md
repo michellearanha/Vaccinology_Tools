@@ -9,14 +9,18 @@ Determine cross-reactivity between peptide sequences based on short sliding wind
 
 1. Download EMBOSS program 
 2. Download script files
-3. export PATH=$PATH:/appropriate/directory
+3. edit ~/.bash_profile
+to contain:
+export PATH=$PATH:/directory_containing_script_files
+source ~/.bash_profile
+
 4. (A) To run sliding window
 
 slide -f {fasta file with sequences} -w {window size} -g {gap size} -l {length of sequences} -o {output folder}
 
 (B) To run heptad homology program
 
-heptad_id -f {fasta file with sequences} -r {heptad register file} -o {output folder}
+heptad_id [-f <fasta file with sequences>] [-r <heptad register file>] [-c <Criteria : Identity or Similarity>] [-t <threshold: Percentage>] 
 
 # Tutorial with examples
 
