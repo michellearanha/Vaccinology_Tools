@@ -61,7 +61,7 @@ Local alignment - Waterman algorithm : water
 # Example of command to run heptad_id
 heptad_id -f seq.fasta -r register.txt -c Identity -t 25 -E /Users/XXX/EMBOSS-6.6.0/bin -A needle
 
-heptad_id_debug2 -f seq.fasta -r register.txt -c Similarity -t 60 -E /Users/XXX/EMBOSS-6.6.0/bin -A water
+heptad_id -f seq.fasta -r register.txt -c Similarity -t 60 -E /Users/XXX/EMBOSS-6.6.0/bin -A water
 
 
 # Tutorial with examples
