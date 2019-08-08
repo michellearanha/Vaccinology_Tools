@@ -22,6 +22,29 @@ slide -f {fasta file with sequences} -w {window size} -g {gap size} -l {length o
 
 heptad_id [-f <file:fasta file with sequences>] [-r <file:heptad register file>] [-c <String:Criteria-Identity/Similarity>] [-t<threshold: Percentage>] 
 
+# Example of command to run heptad_id
+heptad_id -f seq.fasta -r register.txt -c Identity -t 50
+
+heptad_id -f seq.fasta -r register.txt -c Similarity -t 10
+
+Contents of seq.fasta
+>emm_227_1-50
+DGNPIRHENKDLKARLENAMEVAGRDFKRAEELEKAKQALEDQRKDLE
+>emm_232_1-50
+DSDNSNSNRSAVSVKNNEEKLHNKIADLLDQNEEYLNKIDELKEELEAKE
+>emm_238_1-50
+SRDVTEEIAANNTTVQNIRLRNENKNLKAKNEDLKARLENAMNVA
+>emm_239_1-50
+EKDPVLQNKRLRSENQKLKESLENARDVAGRDFKRA
+
+Contents of register.txt
+7
+5
+6
+1
+
+
+
 # Tutorial with examples
 
   
