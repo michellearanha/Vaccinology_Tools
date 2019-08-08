@@ -2,7 +2,7 @@
 Determine cross-reactivity between peptide sequences based on short sliding windows and/or helical wheel homology of coiled-coil proteins
 
 # Dependencies:
-1. Linux or MAC OS based operating system
+1. Linux or macOS based operating system
 2. EMBOSS program http://emboss.open-bio.org/html/adm/ch01s01.html
 
 # Installation Instructions
