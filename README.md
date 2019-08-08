@@ -28,7 +28,9 @@ slide -f {fasta file with sequences} -w {window size} -g {gap size} -l {length o
 
 heptad_id [-f <file:fasta file with sequences>] [-r <file:heptad register file>] [-c <String:Criteria-Identity/Similarity>] [-t<threshold: Percentage>] [-E <Directory_of_EMBOSS_program>] [-A <alignment_algorithm>]
 
+
 *Options for heptad_id
+
 -f [<.fasta>] (seq.fasta) (Input)
 File with sequences listed in fasta format
 -r [<.txt>/<.dat>/...] (register.txt) (Input)
@@ -45,9 +47,9 @@ Local alignment - Waterman algorithm : water
 
 
 # Example of command to run heptad_id
-heptad_id -f seq.fasta -r register.txt -c Identity -t 25 -E /Users/ma0/software_installed/EMBOSS-6.6.0/bin/bin -A needle
+heptad_id -f seq.fasta -r register.txt -c Identity -t 25 -E /Users/XXX/EMBOSS-6.6.0/bin -A needle
 
-heptad_id_debug2 -f seq.fasta -r register.txt -c Similarity -t 60 -E /Users/ma0/software_installed/EMBOSS-6.6.0/bin/bin -A water
+heptad_id_debug2 -f seq.fasta -r register.txt -c Similarity -t 60 -E /Users/XXX/EMBOSS-6.6.0/bin -A water
 
 
 # Tutorial with examples
