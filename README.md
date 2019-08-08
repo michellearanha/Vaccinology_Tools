@@ -26,7 +26,7 @@ slide -f {fasta file with sequences} -w {window size} -g {gap size} -l {length o
 
 (B) To run heptad homology program
 
-heptad_id [-f <file:fasta file with sequences>] [-r <file:heptad register file>] [-c <String:Criteria-Identity/Similarity>] [-t<threshold: Percentage>] [-E <Directory_of_EMBOSS_program>] [-A <alignment algorithm>]
+heptad_id [-f <file:fasta file with sequences>] [-r <file:heptad register file>] [-c <String:Criteria-Identity/Similarity>] [-t<threshold: Percentage>] [-E <Directory_of_EMBOSS_program>] [-A <alignment_algorithm>]
 
 *Options for heptad_id
 -f [<.fasta>] (seq.fasta) (Input)
