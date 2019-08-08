@@ -9,7 +9,7 @@ Determine cross-reactivity between peptide sequences based on short sliding wind
 
 1. Download EMBOSS program 
 
-(A helpful link with EMBOSS installation instructions)
+(A helpful link with EMBOSS installation instructions: https://www.shengweihou.com/blog/install_emboss)
 
 2. Download script files from repository
 
