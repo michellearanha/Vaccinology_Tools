@@ -8,7 +8,7 @@ Determine cross-reactivity between peptide sequences based on short sliding wind
 # Installation Instructions
 
 1. Download EMBOSS program 
-2. Download script files
+2. Download script files from repository
 3. edit ~/.bash_profile
 to contain:
 export PATH=$PATH:/directory_containing_script_files
