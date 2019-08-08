@@ -11,8 +11,8 @@ Determine cross-reactivity between peptide sequences based on short sliding wind
 2. Download script files from repository
 3. edit ~/.bash_profile
 to contain:
-export PATH=$PATH:/directory_containing_script_files
-source ~/.bash_profile
+  export PATH=$PATH:/directory_containing_script_files
+  source ~/.bash_profile
 
 4. (A) To run sliding window
 
