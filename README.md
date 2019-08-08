@@ -22,6 +22,18 @@ slide -f {fasta file with sequences} -w {window size} -g {gap size} -l {length o
 
 heptad_id [-f <file:fasta file with sequences>] [-r <file:heptad register file>] [-c <String:Criteria-Identity/Similarity>] [-t<threshold: Percentage>] 
 
+*Options for heptad_id
+-f [<.fasta>] (seq.fasta) (Input)
+File with sequences listed in fasta format
+-r [<.txt>/<.dat>/...] (register.txt) (Input)
+File with a list of heptad registers of all sequences (predicted or actual heptad site of the first residue of each sequence
+-c [<enum>] (Identity) (Input)
+Criteria : Identity, Similarity
+-t [<Percentage>] (40) (Optional)
+threshold percentage:  sequences that share "criteria" greater than threshold will be saved in a separate folder.
+
+
+
 # Example of command to run heptad_id
 heptad_id -f seq.fasta -r register.txt -c Identity -t 50
 
