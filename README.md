@@ -40,8 +40,8 @@ threshold percentage:  sequences that share "criteria" greater than threshold wi
 -E [<dir_path>] (Input)
 Directory of EMBOSS binaries
 -A [<enum>] (Needle) (Input)
-Global alignment - Needleman-Wunsch algorithm : Needle
-Local alignment - Waterman algorithm : Water
+Global alignment - Needleman-Wunsch algorithm : needle
+Local alignment - Waterman algorithm : water
 
 
 # Example of command to run heptad_id
