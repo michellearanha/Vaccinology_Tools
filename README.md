@@ -26,7 +26,7 @@ slide -f {fasta file with sequences} -w {window size} -g {gap size} -l {length o
 
 (B) To run heptad homology program
 
-heptad_id [-f <file:fasta file with sequences>] [-r <file:heptad register file>] [-c <String:Criteria-Identity/Similarity>] [-t<threshold: Percentage>] 
+heptad_id [-f <file:fasta file with sequences>] [-r <file:heptad register file>] [-c <String:Criteria-Identity/Similarity>] [-t<threshold: Percentage>] [-E <Directory_of_EMBOSS_program>] [-A <alignment algorithm>]
 
 *Options for heptad_id
 -f [<.fasta>] (seq.fasta) (Input)
@@ -37,7 +37,11 @@ File with a list of heptad registers of all sequences (predicted or actual hepta
 Criteria : Identity, Similarity
 -t [<Percentage>] (40) (Optional)
 threshold percentage:  sequences that share "criteria" greater than threshold will be saved in a separate folder.
-
+-E [<dir_path>] (Input)
+Directory of EMBOSS binaries
+-A [<enum>] (Needle) (Input)
+Global alignment - Needleman-Wunsch algorithm : Needle
+Local alignment - Waterman algorithm : Water
 
 
 # Example of command to run heptad_id
