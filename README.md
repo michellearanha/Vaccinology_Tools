@@ -5,7 +5,7 @@ Determine cross-reactivity between peptide sequences based on short sliding wind
 1. Linux or MAC OS based operating system
 2. EMBOSS program http://emboss.open-bio.org/html/adm/ch01s01.html
 
-#Installation Instructions
+# Installation Instructions
 
 1. Download EMBOSS program 
 2. Download script files
@@ -16,7 +16,7 @@ slide -f <fasta file with sequences> -w <window size> -g <gap size> -l <length o
 (B) To run heptad homology program
 heptad_id -f <fasta file with sequences> -r <heptad register file > -o <output folder>
 
-#Tutorial with examples
+# Tutorial with examples
 
   
 
