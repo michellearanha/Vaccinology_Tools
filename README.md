@@ -13,7 +13,7 @@ Determine cross-reactivity between peptide sequences based on short sliding wind
 
 **2. Download script files from repository**
 
-**3. edit ~/.bash_profile**
+**3. edit ~/.bash_profile **
 
 `vi 	~/.bash_profile
 export PATH=$PATH:/directory_containing_script_files
@@ -26,7 +26,7 @@ source ~/.bash_profile`
 
 **(B) To run heptad homology program**
 
-**heptad_id [-f <file:fasta file with sequences>]** **[-r <file:heptad register file>] **[-c <String:Criteria-Identity/Similarity>]** **[-t<threshold: Percentage>] **[-E <Directory_of_EMBOSS_program>] **[-A <alignment_algorithm>]**
+**heptad_id [-f <file:fasta file with sequences>]** **[-r <file:heptad register file>]** **[-c <String:Criteria-Identity/Similarity>]** **[-t<threshold: Percentage>]** **[-E <Directory_of_EMBOSS_program>] **[-A <alignment_algorithm>]**
 
 
 **Options for heptad_id**
