@@ -8,6 +8,7 @@ Determine cross-reactivity between peptide sequences based on short sliding wind
 # Installation Instructions
 
 **1. Download EMBOSS program and install.**
+If you have trouble locating the EMBOSS tar.gz file, find it here: https://src.fedoraproject.org/lookaside/extras/EMBOSS/
 
 (A helpful link with EMBOSS installation instructions: https://www.shengweihou.com/blog/install_emboss)
 
