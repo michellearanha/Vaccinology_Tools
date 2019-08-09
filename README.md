@@ -30,6 +30,7 @@ source ~/.bash_profile`
 
 
 **Options for heptad_id**
+
 `
 -f [<.fasta>] (seq.fasta) (Input)
 
