@@ -26,7 +26,7 @@ source ~/.bash_profile`
 
 **(B) To run heptad homology program**
 
-**heptad_id [-f <file:fasta file with sequences>]** **[-r <file:heptad register file>]** **[-c <String:Criteria-Identity/Similarity>]** **[-t<threshold: Percentage>]** **[-E <Directory_of_EMBOSS_program>] **[-A <alignment_algorithm>]**
+`heptad_id [-f <file:fasta file with sequences>][-r <file:heptad register file>][-c <String:Criteria-Identity/Similarity>][-t<threshold: Percentage>][-E <Directory_of_EMBOSS_program>] [-A <alignment_algorithm>]`
 
 
 **Options for heptad_id**
