@@ -11,26 +11,26 @@ Determine cross-reactivity between peptide sequences based on short sliding wind
 
 (A helpful link with EMBOSS installation instructions: https://www.shengweihou.com/blog/install_emboss)
 
-2. Download script files from repository
+**2. Download script files from repository**
 
-3. edit ~/.bash_profile
+**3. edit ~/.bash_profile**
 
-to contain:
-  export PATH=$PATH:/directory_containing_script_files
+`vi 	~/.bash_profile
+export PATH=$PATH:/directory_containing_script_files
   
-  source ~/.bash_profile
+source ~/.bash_profile`
 
-4. (A) To run sliding window
+**4. (A) To run sliding window**
 
-slide -f {fasta file with sequences} -w {window size} -g {gap size} -l {length of sequences} -o {output folder}
+**slide -f {fasta file with sequences} -w {window size} -g {gap size} -l {length of sequences} -o {output folder}**
 
-(B) To run heptad homology program
+**(B) To run heptad homology program**
 
-heptad_id [-f <file:fasta file with sequences>] [-r <file:heptad register file>] [-c <String:Criteria-Identity/Similarity>] [-t<threshold: Percentage>] [-E <Directory_of_EMBOSS_program>] [-A <alignment_algorithm>]
+**heptad_id [-f <file:fasta file with sequences>]** **[-r <file:heptad register file>] **[-c <String:Criteria-Identity/Similarity>]** **[-t<threshold: Percentage>] **[-E <Directory_of_EMBOSS_program>] **[-A <alignment_algorithm>]**
 
 
-*Options for heptad_id
-
+**Options for heptad_id**
+`
 -f [<.fasta>] (seq.fasta) (Input)
 
 File with sequences listed in fasta format
@@ -55,13 +55,13 @@ Directory of EMBOSS binaries
   
 Global alignment - Needleman-Wunsch algorithm : needle
 
-Local alignment - Waterman algorithm : water
+Local alignment - Waterman algorithm : water`
 
 
 # Example of command to run heptad_id
-heptad_id -f seq.fasta -r register.txt -c Identity -t 25 -E /Users/XXX/EMBOSS-6.6.0/bin -A needle
+`heptad_id -f seq.fasta -r register.txt -c Identity -t 25 -E /Users/XXX/EMBOSS-6.6.0/bin -A needle`
 
-heptad_id -f seq.fasta -r register.txt -c Similarity -t 60 -E /Users/XXX/EMBOSS-6.6.0/bin -A water
+`heptad_id -f seq.fasta -r register.txt -c Similarity -t 60 -E /Users/XXX/EMBOSS-6.6.0/bin -A water`
 
 
 # Tutorial with examples
