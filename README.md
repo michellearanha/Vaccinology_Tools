@@ -31,7 +31,7 @@ source ~/.bash_profile
 
 **Options for heptad_id**
 
-`
+
 -f [<.fasta>] (seq.fasta) (Input)
 
 File with sequences listed in fasta format
@@ -56,7 +56,7 @@ Directory of EMBOSS binaries
   
 Global alignment - Needleman-Wunsch algorithm : needle
 
-Local alignment - Waterman algorithm : water`
+Local alignment - Waterman algorithm : water
 
 
 # Example of command to run heptad_id
