@@ -1,13 +1,14 @@
 # Vaccinology Tools
+
 Determine cross-reactivity between peptide sequences based on short sliding windows and/or helical wheel homology of coiled-coil proteins
 
-# Dependencies:
+## Dependencies:
 
 1. Linux or macOS based operating system
 2. [EMBOSS program](http://emboss.open-bio.org/html/adm/ch01s01.html)
  - **_NOTE:_** The download instructions above include an FTP site. If you are unable to download from websites via FTP, try [this fedora repo](https://src.fedoraproject.org/lookaside/extras/EMBOSS/) in stead.
 
-# Installation Instructions
+## Installation Instructions
 
 **1. Download EMBOSS program and install.**
 
@@ -28,9 +29,7 @@ Determine cross-reactivity between peptide sequences based on short sliding wind
 `heptad_id [-f <file:fasta file with sequences>][-r <file:heptad register file>][-c <String:Criteria-Identity/Similarity>][-t<threshold: Percentage>][-E <Directory_of_EMBOSS_program>] [-A <alignment_algorithm>]`
 
 
-###Options for heptad_id
-
---
+## Options for heptad_id
 
 `-f [<.fasta>] (seq.fasta) (Input)`
 
@@ -59,13 +58,16 @@ Global alignment - Needleman-Wunsch algorithm : needle
 Local alignment - Waterman algorithm : water
 
 
-# Examples 
-`heptad_id -f seq.fasta -r register.txt -c Identity -t 25 -E /Users/XXX/EMBOSS-6.6.0/bin -A needle`
+## Examples 
 
-`heptad_id -f seq.fasta -r register.txt -c Similarity -t 60 -E /Users/XXX/EMBOSS-6.6.0/bin -A water`
+Be sure to replace <your username> with your username. 
+
+`heptad_id -f seq.fasta -r register.txt -c Identity -t 25 -E /Users/<your username>/EMBOSS-6.6.0/bin -A needle`
+
+`heptad_id -f seq.fasta -r register.txt -c Similarity -t 60 -E /Users/<your username>/EMBOSS-6.6.0/bin -A water`
 
 
-# Tutorial with examples
+## Tutorial with examples
 
   
 
