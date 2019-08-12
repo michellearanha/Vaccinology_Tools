@@ -10,13 +10,21 @@ Determine cross-reactivity between peptide sequences based on short sliding wind
 
 ## Installation Instructions for MacOS
 
-#### 1. Download EMBOSS program and install.
+#### 1. Clone this git repo
+
+- `git clone https://github.com/michellearanha/Vaccinology_Tools.git`
+
+#### 2. Download EMBOSS program and install.
 
 - Here are some helpful [installation instructions](https://www.shengweihou.com/blog/install_emboss)
 
-#### 2. Download script files from repository
+**_NOTE:_** Instructions linked above are for Debian-based operating systems. As such, you may notice they use `apt-get install` in the later parts, as well as reference a directory path that does not exist in MacOS (i.e. `/home/username/something`). You may need to find another source if you run into the errors specified in this documentation. 
 
-#### 3. edit your ~/.bash_profile
+#### 3. Download script files from repository
+
+- You may provide your own, or you can look in the `./old\ files/` directory provided in this repo. 
+
+#### 4. edit your ~/.bash_profile
 
 - Need to include this line: `PATH=$PATH:</directory_containing_script_files>`
 	- Easiest way to do this is to run: `echo "PATH=$PATH:/<directory_containing_script_files>" >> ~/.bash_profile && source ~/.bash_profile`
