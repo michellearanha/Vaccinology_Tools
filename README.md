@@ -19,17 +19,19 @@ Determine cross-reactivity between peptide sequences based on short sliding wind
 - Here are some helpful [installation instructions](https://www.shengweihou.com/blog/install_emboss)
 
 **_NOTE:_** Instructions linked above are for Debian-based operating systems. As such, you may notice they use `apt-get install` in the later parts, as well as reference a directory path that does not exist in MacOS (i.e. `/home/username/something`). You may need to find another source if you run into the errors specified in this documentation. 
+ 
+#### 3. edit your ~/.bash_profile
 
-#### 3. Download script files from repository
+- Need to include this line: `PATH=$PATH:</directory/containing/Vaccinology_Tools/Heptad\ homology>`
+	- Easiest way to do this is to run: `echo "PATH=$PATH:</directory/containing/Vaccinology_Tools/Heptad\ homology>" >> ~/.bash_profile && source ~/.bash_profile`
 
-- You may provide your own, or you can look in the `./old\ files/` directory provided in this repo. 
+**_NOTE:_** Make sure you replace `</directory/containing/Vaccinology_Tools/Heptad\ homology>` with the directory containing the directories you downloaded.
 
-#### 4. edit your ~/.bash_profile
+#### 4. Ensure the heptad_id file is executable
 
-- Need to include this line: `PATH=$PATH:</directory_containing_script_files>`
-	- Easiest way to do this is to run: `echo "PATH=$PATH:/<directory_containing_script_files>" >> ~/.bash_profile && source ~/.bash_profile`
-
-**_NOTE:_** Make sure you replace `<directory_containing_script_files>` with the directory containing your script files.
+- Check the permissions on the file to make sure you are able to execute it.
+	- Easiest way is to `cd` to the `/Vaccinology_Tools/Heptad\ homology` directory and run `ls -la`
+	- If you need to add the executable flag, just run `chmod +x heptad_id`
 
 ## Options for heptad_id
 
