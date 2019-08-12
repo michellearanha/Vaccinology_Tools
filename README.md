@@ -8,63 +8,67 @@ Determine cross-reactivity between peptide sequences based on short sliding wind
 2. [EMBOSS program](http://emboss.open-bio.org/html/adm/ch01s01.html)
  - **_NOTE:_** The download instructions above include an FTP site. If you are unable to download from websites via FTP, try [this fedora repo](https://src.fedoraproject.org/lookaside/extras/EMBOSS/) in stead.
 
-## Installation Instructions
+## Installation Instructions for MacOS
 
-**1. Download EMBOSS program and install.**
+#### 1. Download EMBOSS program and install.
 
 - Here are some helpful [installation instructions](https://www.shengweihou.com/blog/install_emboss)
 
-**2. Download script files from repository**
+#### 2. Download script files from repository
 
-**3. edit your ~/.bash_profile**
+#### 3. edit your ~/.bash_profile
 
-- Need to include this line: `PATH=$PATH:/directory_containing_script_files`
+- Need to include this line: `PATH=$PATH:</directory_containing_script_files>`
+	- Easiest way to do this is to run: `echo "PATH=$PATH:/<directory_containing_script_files>" >> ~/.bash_profile && source ~/.bash_profile`
 
-**4A. To run sliding window**
-
-`slide -f {fasta file with sequences} -w {window size} -g {gap size} -l {length of sequences} -o {output folder}`
-
-**4B. To run heptad homology program**
-
-`heptad_id [-f <file:fasta file with sequences>][-r <file:heptad register file>][-c <String:Criteria-Identity/Similarity>][-t<threshold: Percentage>][-E <Directory_of_EMBOSS_program>] [-A <alignment_algorithm>]`
-
+**_NOTE:_** Make sure you replace `<directory_containing_script_files>` with the directory containing your script files.
 
 ## Options for heptad_id
 
 `-f [<.fasta>] (seq.fasta) (Input)`
 
-File with sequences listed in fasta format
+ - File with sequences listed in fasta format
 
 `-r [<.txt>/<.dat>/...] (register.txt) (Input)`
 
-File with a list of heptad registers of all sequences (predicted or actual heptad site of the first residue of each sequence
+ - File with a list of heptad registers of all sequences (predicted or actual heptad site of the first residue of each sequence
 
 `-c [<type_enum>] (Identity) (Input)`
   
-Criteria : Identity, Similarity
+ - Criteria : Identity, Similarity
 
 `-t [<float_percentage>] (45) (Optional)`
   
-threshold percentage:  sequences that share "criteria" greater than threshold will be saved in a separate folder.
+ - threshold percentage:  sequences that share "criteria" greater than threshold will be saved in a separate folder.
 
 `-E [<dir_path>] (Input)`
 
-Directory of EMBOSS binaries
+ - Directory of EMBOSS binaries
 
 `-A [<type_enum>] (water) (Input)`
   
-Global alignment - Needleman-Wunsch algorithm : needle
+ - Global alignment - Needleman-Wunsch algorithm : needle
 
-Local alignment - Waterman algorithm : water
+ - Local alignment - Waterman algorithm : water
 
 
 ## Examples 
 
-Be sure to replace <your username> with your username. 
+#### Running a sliding window
+
+`slide -f {fasta file with sequences} -w {window size} -g {gap size} -l {length of sequences} -o {output folder}`
+
+#### Running a heptad homology program
+
+`heptad_id [-f <file:fasta file with sequences>][-r <file:heptad register file>][-c <String:Criteria-Identity/Similarity>][-t<threshold: Percentage>][-E <Directory_of_EMBOSS_program>] [-A <alignment_algorithm>]`
+
+#### Specific examples:
 
 `heptad_id -f seq.fasta -r register.txt -c Identity -t 25 -E /Users/<your username>/EMBOSS-6.6.0/bin -A needle`
 
 `heptad_id -f seq.fasta -r register.txt -c Similarity -t 60 -E /Users/<your username>/EMBOSS-6.6.0/bin -A water`
+
+**_NOTE:_** Be sure to replace `<your username>` with your username. 
 
 
 ## Tutorial with examples
