@@ -1,0 +1,121 @@
+########################################
+# Program: needle
+# Rundate: Mon 12 Aug 2019 15:01:47
+# Commandline: needle
+#    -asequence emm_232_1-50.faa
+#    -bsequence seq.fasta
+#    -sprotein1
+#    -sprotein2
+#    [-outfile] stdout
+#    -gapopen 10.0
+#    -gapextend 0.5
+# Align_format: srspair
+# Report_file: stdout
+########################################
+
+#=======================================
+#
+# Aligned_sequences: 2
+# 1: emm_232_1-50
+# 2: emm_227_1-50
+# Matrix: EBLOSUM62
+# Gap_penalty: 10.0
+# Extend_penalty: 0.5
+#
+# Length: 57
+# Identity:       5/57 ( 8.8%)
+# Similarity:    19/57 (33.3%)
+# Gaps:          16/57 (28.1%)
+# Score: 21.0
+# 
+#
+#=======================================
+
+emm_232_1-50       1 DSDNSNSNRSAVSVKNNEEKLHNKIADLLDQNEEYLNKIDELKEELEAKE     50
+                              ....:::..:.|..::.:.::.......:.:||::..:|.|
+emm_227_1-50       1 ---------DGNPIRHENKDLKARLENAMEVAGRDFKRAEELEKAKQALE     41
+
+emm_232_1-50      50 -------     50
+                            
+emm_227_1-50      42 DQRKDLE     48
+
+
+#=======================================
+#
+# Aligned_sequences: 2
+# 1: emm_232_1-50
+# 2: emm_232_1-50
+# Matrix: EBLOSUM62
+# Gap_penalty: 10.0
+# Extend_penalty: 0.5
+#
+# Length: 50
+# Identity:      50/50 (100.0%)
+# Similarity:    50/50 (100.0%)
+# Gaps:           0/50 ( 0.0%)
+# Score: 250.0
+# 
+#
+#=======================================
+
+emm_232_1-50       1 DSDNSNSNRSAVSVKNNEEKLHNKIADLLDQNEEYLNKIDELKEELEAKE     50
+                     ||||||||||||||||||||||||||||||||||||||||||||||||||
+emm_232_1-50       1 DSDNSNSNRSAVSVKNNEEKLHNKIADLLDQNEEYLNKIDELKEELEAKE     50
+
+
+#=======================================
+#
+# Aligned_sequences: 2
+# 1: emm_232_1-50
+# 2: emm_238_1-50
+# Matrix: EBLOSUM62
+# Gap_penalty: 10.0
+# Extend_penalty: 0.5
+#
+# Length: 56
+# Identity:       8/56 (14.3%)
+# Similarity:    17/56 (30.4%)
+# Gaps:          17/56 (30.4%)
+# Score: 25.0
+# 
+#
+#=======================================
+
+emm_232_1-50       1 ------DSDNSNSNRSAVSVKNNEEKLHNKIADLLDQNEEYLNKIDELKE     44
+                           :...:|:....:.::|..:.|..|..||..:.|..:|..     
+emm_238_1-50       1 SRDVTEEIAANNTTVQNIRLRNENKNLKAKNEDLKARLENAMNVA-----     45
+
+emm_232_1-50      45 ELEAKE     50
+                           
+emm_238_1-50      45 ------     45
+
+
+#=======================================
+#
+# Aligned_sequences: 2
+# 1: emm_232_1-50
+# 2: emm_239_1-50
+# Matrix: EBLOSUM62
+# Gap_penalty: 10.0
+# Extend_penalty: 0.5
+#
+# Length: 60
+# Identity:      11/60 (18.3%)
+# Similarity:    18/60 (30.0%)
+# Gaps:          34/60 (56.7%)
+# Score: 27.5
+# 
+#
+#=======================================
+
+emm_232_1-50       1 DSDNSNSNRSAVSVKNNEEKLHNKIADLLDQNEEYLNKIDELKEELE-AK     49
+                                       ||      |.:.||:...::..:|||.|| |:
+emm_239_1-50       1 ------------------EK------DPVLQNKRLRSENQKLKESLENAR     26
+
+emm_232_1-50      50 E---------     50
+                     :         
+emm_239_1-50      27 DVAGRDFKRA     36
+
+
+#---------------------------------------
+#---------------------------------------

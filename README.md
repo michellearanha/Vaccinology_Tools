@@ -10,24 +10,33 @@ Determine cross-reactivity between peptide sequences based on short sliding wind
 
 ## Installation Instructions for MacOS
 
-#### 1. Clone this git repo
+These instructions are assuming you are compiling and using this software in your home directory. 
+
+### 1. Clone this git repo
 
 - `git clone https://github.com/michellearanha/Vaccinology_Tools.git`
 
-#### 2. Download EMBOSS program and install.
+### 2. Download EMBOSS program and install.
 
 - Here are some helpful [installation instructions](https://www.shengweihou.com/blog/install_emboss)
 
-**_NOTE:_** Instructions linked above are for Debian-based operating systems. As such, you may notice they use `apt-get install` in the later parts, as well as reference a directory path that does not exist in MacOS (i.e. `/home/username/something`). You may need to find another source if you run into the errors specified in this documentation. 
+**_NOTE:_** Instructions linked above are for Debian-based operating systems. I have listed the commands as they relate to MacOS below:
+
+- Download EMBOSS via [ftp](http://emboss.open-bio.org/html/adm/ch01s01.html) or using the [fedora repository]((https://src.fedoraproject.org/lookaside/extras/EMBOSS/))
+- Untar the tarball: `tar -xvf EMBOSS-6.6.0.tar.gz`
+- In the new EMBOSS directory, run `./configure --prefix=/Users/<your username>/EMBOSS-6.6.0/`
+- Run `make`
+- Run `make install`
+- Make some coffee, it will take a bit to install. 
  
-#### 3. edit your ~/.bash_profile
+### 3. edit your ~/.bash_profile
 
 - Need to include this line: `PATH=$PATH:</directory/containing/Vaccinology_Tools/Heptad\ homology>`
 	- Easiest way to do this is to run: `echo "PATH=$PATH:</directory/containing/Vaccinology_Tools/Heptad\ homology>" >> ~/.bash_profile && source ~/.bash_profile`
 
 **_NOTE:_** Make sure you replace `</directory/containing/Vaccinology_Tools/Heptad\ homology>` with the directory containing the directories you downloaded.
 
-#### 4. Ensure the heptad_id file is executable
+### 4. Ensure the heptad_id file is executable
 
 - Check the permissions on the file to make sure you are able to execute it.
 	- Easiest way is to `cd` to the `/Vaccinology_Tools/Heptad\ homology` directory and run `ls -la`

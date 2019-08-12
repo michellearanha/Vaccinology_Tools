@@ -1,0 +1,109 @@
+########################################
+# Program: needle
+# Rundate: Mon 12 Aug 2019 15:01:48
+# Commandline: needle
+#    -asequence emm_239_1-50_a.faa
+#    -bsequence a.faa
+#    -sprotein1
+#    -sprotein2
+#    [-outfile] stdout
+#    -gapopen 10.0
+#    -gapextend 0.5
+# Align_format: srspair
+# Report_file: stdout
+########################################
+
+#=======================================
+#
+# Aligned_sequences: 2
+# 1: emm_239_1-50
+# 2: emm_227_1-50
+# Matrix: EBLOSUM62
+# Gap_penalty: 10.0
+# Extend_penalty: 0.5
+#
+# Length: 8
+# Identity:       4/8 (50.0%)
+# Similarity:     4/8 (50.0%)
+# Gaps:           3/8 (37.5%)
+# Score: 18.0
+# 
+#
+#=======================================
+
+emm_239_1-50       1 ENNLAA--      6
+                      .||||  
+emm_227_1-50       1 -GNLAAKR      7
+
+
+#=======================================
+#
+# Aligned_sequences: 2
+# 1: emm_239_1-50
+# 2: emm_232_1-50
+# Matrix: EBLOSUM62
+# Gap_penalty: 10.0
+# Extend_penalty: 0.5
+#
+# Length: 8
+# Identity:       2/8 (25.0%)
+# Similarity:     3/8 (37.5%)
+# Gaps:           3/8 (37.5%)
+# Score: 9.0
+# 
+#
+#=======================================
+
+emm_239_1-50       1 --ENNLAA      6
+                       |.|:. 
+emm_232_1-50       1 NAEINIL-      7
+
+
+#=======================================
+#
+# Aligned_sequences: 2
+# 1: emm_239_1-50
+# 2: emm_238_1-50
+# Matrix: EBLOSUM62
+# Gap_penalty: 10.0
+# Extend_penalty: 0.5
+#
+# Length: 8
+# Identity:       4/8 (50.0%)
+# Similarity:     4/8 (50.0%)
+# Gaps:           3/8 (37.5%)
+# Score: 20.0
+# 
+#
+#=======================================
+
+emm_239_1-50       1 --ENNLAA      6
+                       .|||| 
+emm_238_1-50       1 DANNNLA-      7
+
+
+#=======================================
+#
+# Aligned_sequences: 2
+# 1: emm_239_1-50
+# 2: emm_239_1-50
+# Matrix: EBLOSUM62
+# Gap_penalty: 10.0
+# Extend_penalty: 0.5
+#
+# Length: 6
+# Identity:       6/6 (100.0%)
+# Similarity:     6/6 (100.0%)
+# Gaps:           0/6 ( 0.0%)
+# Score: 29.0
+# 
+#
+#=======================================
+
+emm_239_1-50       1 ENNLAA      6
+                     ||||||
+emm_239_1-50       1 ENNLAA      6
+
+
+#---------------------------------------
+#---------------------------------------
