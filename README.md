@@ -10,7 +10,7 @@ Determine cross-reactivity between peptide sequences based on short sliding wind
 
 ## Installation Instructions for MacOS
 
-These instructions are assuming you are compiling and using this software in your home directory. These instructions assume you have wget and git installed. If you do not, please check out the documentation to install [homebrew](https://brew.sh/)
+These instructions are assuming you are compiling and using this software in your home directory, and that you have wget and git installed. If you are installing somewhere else, you will need to adjust the commands accordingly. If you do not have git and wget installed, please check out the documentation to install [homebrew](https://brew.sh/) for macos, as it is the simplest way to get them. 
 
 ### 1. Clone this git repo
 
