@@ -32,7 +32,7 @@ These instructions are assuming you are compiling and using this software in you
 ### 3. edit your ~/.bash_profile
 
 - Need to include this line: `PATH=$PATH:</directory/containing/Vaccinology_Tools/Heptad\ homology>`
-	- Easiest way to do this is to run: `echo "PATH=$PATH:</directory/containing/Vaccinology_Tools/Heptad\ homology>" >> ~/.bash_profile && source ~/.bash_profile`
+	- Assuming this is in your home directory, the easiest way to do this is to run: `echo "PATH=$PATH:~/Vaccinology_Tools/Heptad\ homology" >> ~/.bash_profile && source ~/.bash_profile`
 
 **_NOTE:_** Make sure you replace `</directory/containing/Vaccinology_Tools/Heptad\ homology>` with the directory containing this repo.
 
