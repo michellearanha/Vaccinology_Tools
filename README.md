@@ -24,7 +24,8 @@ These instructions are assuming you are compiling and using this software in you
 
 - Download EMBOSS via [ftp](http://emboss.open-bio.org/html/adm/ch01s01.html) or using the [fedora repository](https://src.fedoraproject.org/lookaside/extras/EMBOSS/)
 - Untar the tarball: `tar -xvf EMBOSS-6.6.0.tar.gz`
-- In the new EMBOSS directory, run `./configure --prefix=/Users/$('whoami')/EMBOSS-6.6.0/`
+- `cd EMBOSS-6.6.0`
+- Run `./configure --prefix=/Users/$('whoami')/EMBOSS-6.6.0/`
 - Run `make`
 - Run `make install`
 - Make some coffee, it will take a bit to install. 
