@@ -39,7 +39,7 @@ These instructions are assuming you are compiling and using this software in you
 ### 4. Ensure the heptad_id file is executable
 
 - Check the permissions on the file to make sure you are able to execute it.
-	- Easiest way is to `cd` to the `/Vaccinology_Tools/Heptad\ homology` directory and run `ls -la`
+	- Easiest way to check is to `cd` to the `/Vaccinology_Tools/Heptad\ homology` directory and run `ls -la`
 	- If you need to add the executable flag, just run `chmod +x heptad_id`
 
 ## Options for heptad_id
