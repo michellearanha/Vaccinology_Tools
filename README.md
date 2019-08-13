@@ -31,12 +31,10 @@ These instructions are assuming you are compiling and using this software in you
  
 ### 3. edit your ~/.bash_profile
 
-- Need to include this line: `PATH=$PATH:</directory/containing/Vaccinology_Tools/Heptad_homology>`
+- Need to include this line: `PATH=$PATH:</directory/containing/Vaccinology_Tools/Heptad_homology>` 
 	- Assuming this is in your home directory, the easiest way to do this is to run:
 
 		 `echo "PATH=$PATH:~/Vaccinology_Tools/Heptad_homology" >> ~/.bash_profile && source ~/.bash_profile`
-
-**_NOTE:_** If you are not installing in your home directory, please configure the path command to point to your source in stead. 
 
 ### 4. Ensure the heptad_id file is executable
 
