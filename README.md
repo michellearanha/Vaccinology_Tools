@@ -20,7 +20,7 @@ These instructions are assuming you are compiling and using this software in you
 
 - Here are some helpful [installation instructions](https://www.shengweihou.com/blog/install_emboss)
 
-**_NOTE:_** Instructions linked above are for Debian-based operating systems. I have listed the commands as they relate to MacOS below:
+**_NOTE:_** Instructions linked above are for Debian-based operating systems. There seems to be a brew install for emboss, but we have not tested that method. I have listed the commands as they relate to MacOS below:
 
 - Download EMBOSS via [ftp](http://emboss.open-bio.org/html/adm/ch01s01.html) or using the [fedora repository](https://src.fedoraproject.org/lookaside/extras/EMBOSS/)
 - Untar the tarball: `tar -xvf EMBOSS-6.6.0.tar.gz`
