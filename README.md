@@ -22,7 +22,7 @@ These instructions are assuming you are compiling and using this software in you
 
 **_NOTE:_** Instructions linked above are for Debian-based operating systems. I have listed the commands as they relate to MacOS below:
 
-- Download EMBOSS via [ftp](http://emboss.open-bio.org/html/adm/ch01s01.html) or using the [fedora repository]((https://src.fedoraproject.org/lookaside/extras/EMBOSS/))
+- Download EMBOSS via [ftp](http://emboss.open-bio.org/html/adm/ch01s01.html) or using the [fedora repository](https://src.fedoraproject.org/lookaside/extras/EMBOSS/)
 - Untar the tarball: `tar -xvf EMBOSS-6.6.0.tar.gz`
 - In the new EMBOSS directory, run `./configure --prefix=/Users/$('whoami')/EMBOSS-6.6.0/`
 - Run `make`
