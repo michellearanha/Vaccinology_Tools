@@ -88,7 +88,7 @@ These instructions are assuming you are compiling and using this software in you
 `heptad_id -f seq.fasta -r register.txt -c Similarity -t 60 -E /Users/$('whoami')/EMBOSS-6.6.0/bin -A water`
 
 
-## Tutorial with examples
+## Definations
 
 What the program does:
 
