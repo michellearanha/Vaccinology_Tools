@@ -24,7 +24,7 @@ These instructions are assuming you are compiling and using this software in you
 
 - Download EMBOSS via [ftp](http://emboss.open-bio.org/html/adm/ch01s01.html) or using the [fedora repository]((https://src.fedoraproject.org/lookaside/extras/EMBOSS/))
 - Untar the tarball: `tar -xvf EMBOSS-6.6.0.tar.gz`
-- In the new EMBOSS directory, run `./configure --prefix=/Users/<your username>/EMBOSS-6.6.0/`
+- In the new EMBOSS directory, run `./configure --prefix=/Users/$('whoami')/EMBOSS-6.6.0/`
 - Run `make`
 - Run `make install`
 - Make some coffee, it will take a bit to install. 
@@ -83,16 +83,12 @@ These instructions are assuming you are compiling and using this software in you
 
 #### Specific examples:
 
-`heptad_id -f seq.fasta -r register.txt -c Identity -t 25 -E /Users/<your username>/EMBOSS-6.6.0/bin -A needle`
+`heptad_id -f seq.fasta -r register.txt -c Identity -t 25 -E /Users/$('whoami')/EMBOSS-6.6.0/bin -A needle`
 
-`heptad_id -f seq.fasta -r register.txt -c Similarity -t 60 -E /Users/<your username>/EMBOSS-6.6.0/bin -A water`
-
-**_NOTE:_** Be sure to replace `<your username>` with your username. 
+`heptad_id -f seq.fasta -r register.txt -c Similarity -t 60 -E /Users/$('whoami')/EMBOSS-6.6.0/bin -A water`
 
 
 ## Tutorial with examples
-
-  
 
 What the program does:
 
