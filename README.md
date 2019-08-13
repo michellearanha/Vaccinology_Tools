@@ -32,7 +32,9 @@ These instructions are assuming you are compiling and using this software in you
 ### 3. edit your ~/.bash_profile
 
 - Need to include this line: `PATH=$PATH:</directory/containing/Vaccinology_Tools/Heptad\ homology>`
-	- Assuming this is in your home directory, the easiest way to do this is to run: `echo "PATH=$PATH:~/Vaccinology_Tools/Heptad\ homology" >> ~/.bash_profile && source ~/.bash_profile`
+	- Assuming this is in your home directory, the easiest way to do this is to run:
+
+	 `echo "PATH=$PATH:~/Vaccinology_Tools/Heptad\ homology" >> ~/.bash_profile && source ~/.bash_profile`
 
 **_NOTE:_** If you are not installing in your home directory, please configure the path command to point to your source in stead. 
 
@@ -88,7 +90,7 @@ These instructions are assuming you are compiling and using this software in you
 `heptad_id -f seq.fasta -r register.txt -c Similarity -t 60 -E /Users/$('whoami')/EMBOSS-6.6.0/bin -A water`
 
 
-## Definations
+## Definations and Long Explinations
 
 What the program does:
 
