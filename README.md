@@ -34,7 +34,7 @@ These instructions are assuming you are compiling and using this software in you
 - Need to include this line: `PATH=$PATH:</directory/containing/Vaccinology_Tools/Heptad\ homology>`
 	- Easiest way to do this is to run: `echo "PATH=$PATH:</directory/containing/Vaccinology_Tools/Heptad\ homology>" >> ~/.bash_profile && source ~/.bash_profile`
 
-**_NOTE:_** Make sure you replace `</directory/containing/Vaccinology_Tools/Heptad\ homology>` with the directory containing the directories you downloaded.
+**_NOTE:_** Make sure you replace `</directory/containing/Vaccinology_Tools/Heptad\ homology>` with the directory containing this repo.
 
 ### 4. Ensure the heptad_id file is executable
 
