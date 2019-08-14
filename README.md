@@ -42,6 +42,10 @@ These instructions are assuming you are compiling and using this software in you
 - Check the permissions on the file to make sure you are able to execute it.
 	- Easiest way to check is to `cd` to the `/Vaccinology_Tools/Heptad_homology` directory and run `ls -la`
 	- If you need to add the executable flag, just run `chmod +x heptad_id`
+	
+## Options for sliding_window
+
+
 
 ## Options for heptad_id
 
@@ -83,6 +87,8 @@ These instructions are assuming you are compiling and using this software in you
 `heptad_id [-f <file:fasta file with sequences>][-r <file:heptad register file>][-c <String:Criteria-Identity/Similarity>][-t<threshold: Percentage>][-E <Directory_of_EMBOSS_program>] [-A <alignment_algorithm>]`
 
 #### Specific examples:
+
+`sliding_debug1 -f seq.fasta -w 10 -g 4 -t 25 -c Identity -E /Users/$(whoami)/EMBOSS-6.6.0/bin -A needle -l 40 -D NTC6`
 
 `heptad_id -f seq.fasta -r register.txt -c Identity -t 25 -E /Users/$('whoami')/EMBOSS-6.6.0/bin -A needle`
 
