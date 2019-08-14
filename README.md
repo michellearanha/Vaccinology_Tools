@@ -10,7 +10,7 @@ Determine cross-reactivity between peptide sequences based on short sliding wind
 
 ## Installation Instructions for MacOS
 
-These instructions are assuming you are compiling and using this software in your home directory, and that you have wget and git installed. If you are installing somewhere else, you will need to adjust the commands accordingly. If you do not have git and wget installed, please check out the documentation to install [homebrew](https://brew.sh/) for macos, as it is the simplest way to get them. 
+These instructions are assuming you are compiling and using this software in your home directory, and that you have wget and git installed. If you are installing somewhere else, you will need to adjust the commands accordingly. If you do not have git and wget installed, please check out the documentation to install [homebrew](https://brew.sh/) for macOS, as it is the simplest way to get them. 
 
 ### 1. Clone this git repo
 
@@ -20,7 +20,8 @@ These instructions are assuming you are compiling and using this software in you
 
 - Download EMBOSS via [ftp](http://emboss.open-bio.org/html/adm/ch01s01.html) or using the [fedora repository](https://src.fedoraproject.org/lookaside/extras/EMBOSS/)
 - Untar the tarball: `tar -xvf EMBOSS-6.6.0.tar.gz`
-- In the new EMBOSS directory, run `./configure --prefix=/Users/$('whoami')/EMBOSS-6.6.0/`
+- `cd EMBOSS-6.6.0`
+- Run `./configure --prefix=/Users/$('whoami')/EMBOSS-6.6.0/`
 - Run `make`
 - Run `make install`
 - Make some coffee, the last two commands may take a bit to install. 
@@ -69,6 +70,48 @@ These instructions are assuming you are compiling and using this software in you
 - Check the permissions on the file to make sure you are able to execute it.
 	- Easiest way to check is to `cd` to the `~/Vaccinology_Tools/Heptad_homology` directory and run `ls -la`
 	- If you need to add the executable flag, just run `chmod +x heptad_id`
+	
+## Options for sliding_window
+
+`-f [<.fasta>] (seq.fasta) (Input)`
+
+ - File with sequences listed in fasta format
+ 
+`-w [<integer>] (8) (Input)`
+  
+ - window size
+
+`-g [<integer>] (3) (Input)`
+  
+ - gap size
+ 
+`-l [<integer>] (50) (Input)`
+  
+ - Length of the largest sequence
+
+`-c [<type_enum>] (Identity) (Input)`
+  
+ - Criteria : Identity, Similarity
+
+`-t [<float_percentage>] (45) (Optional)`
+  
+ - threshold percentage:  sequences that share "criteria" greater than threshold will be saved in a separate folder.
+
+`-E [<dir_path>] (Input)`
+
+ - Directory of EMBOSS binaries
+
+`-A [<type_enum>] (water) (Input)`
+  
+ - Global alignment - Needleman-Wunsch algorithm : needle
+
+ - Local alignment - Waterman algorithm : water 
+ 
+ `-D [<char>] (Input)`
+ 
+ - prefix name to the output folders
+ 
+
 
 ## Options for heptad_id
 
@@ -103,7 +146,8 @@ These instructions are assuming you are compiling and using this software in you
 
 #### Running a sliding window
 
-`slide -f {fasta file with sequences} -w {window size} -g {gap size} -l {length of sequences} -o {output folder}`
+`sliding_debug1 [-f <file:fasta file with sequences>][-w <integer:window size>][-g <integer:gap size>][-l <integer:length of longest sequence>][-c <String:Criteria-Identity/Similarity>][-t<threshold: Percentage>][-E <Directory_of_EMBOSS_program>] [-A <alignment_algorithm>][-D <String:prefix for output folder>]`
+
 
 #### Running a heptad homology program
 
@@ -111,6 +155,7 @@ These instructions are assuming you are compiling and using this software in you
 
 #### Specific examples:
 
+<<<<<<< HEAD
 Macos:
 
 `heptad_id -f ~/Vaccinology_Tools/Heptad_homology/seq.fasta -r ~/Vaccinology_Tools/Heptad_homology/register.txt -c Identity -t 25 -E ~/EMBOSS-6.6.0/bin -A needle`
@@ -118,6 +163,13 @@ Macos:
 `heptad_id -f ~/Vaccinology_Tools/Heptad_homology/seq.fasta -r ~/Vaccinology_Tools/Heptad_homology/register.txt -c Similarity -t 60 -E ~/EMBOSS-6.6.0/bin -A water`
 
 Linux:
+=======
+`sliding_debug1 -f seq.fasta -w 10 -g 4 -t 25 -c Identity -E /Users/$(whoami)/EMBOSS-6.6.0/bin -A needle -l 40 -D NTC6`
+
+`sliding_debug1 -f seq.fasta -w 15 -g 4 -t 40 -c Similarity -E /Users/$(whoami)/EMBOSS-6.6.0/bin -A needle -l 50 -D NTC6_similarity`
+
+`heptad_id -f seq.fasta -r register.txt -c Identity -t 25 -E /Users/$('whoami')/EMBOSS-6.6.0/bin -A needle`
+>>>>>>> 84645cc91dd7fd0fe0c58045ca63e173760acaf6
 
 `heptad_id -f ~/Vaccinology_Tools/Heptad_homology/seq.fasta -r ~/Vaccinology_Tools/Heptad_homology/register.txt -c Identity -t 25 -E ~/EMBOSS-6.6.0/bin -A needle`
 
