@@ -45,6 +45,44 @@ These instructions are assuming you are compiling and using this software in you
 	
 ## Options for sliding_window
 
+`-f [<.fasta>] (seq.fasta) (Input)`
+
+ - File with sequences listed in fasta format
+ 
+`-w [<integer>] (8) (Input)`
+  
+ - window size
+
+`-g [<integer>] (3) (Input)`
+  
+ - gap size
+ 
+`-l [<integer>] (3) (Input)`
+  
+ - Length of the largest sequence
+
+`-c [<type_enum>] (Identity) (Input)`
+  
+ - Criteria : Identity, Similarity
+
+`-t [<float_percentage>] (45) (Optional)`
+  
+ - threshold percentage:  sequences that share "criteria" greater than threshold will be saved in a separate folder.
+
+`-E [<dir_path>] (Input)`
+
+ - Directory of EMBOSS binaries
+
+`-A [<type_enum>] (water) (Input)`
+  
+ - Global alignment - Needleman-Wunsch algorithm : needle
+
+ - Local alignment - Waterman algorithm : water 
+ 
+ `-D [<char>] (Input)`
+ 
+ - prefix name to the output folders
+ 
 
 
 ## Options for heptad_id
