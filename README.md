@@ -16,30 +16,58 @@ These instructions are assuming you are compiling and using this software in you
 
 - `git clone https://github.com/michellearanha/Vaccinology_Tools.git`
 
-### 2. Download EMBOSS program and install.
-
-- Here are some helpful [installation instructions](https://www.shengweihou.com/blog/install_emboss)
-
-**_NOTE:_** Instructions linked above are for Debian-based operating systems. There seems to be a brew install for emboss, but we have not tested that method. I have listed the commands as they relate to MacOS below:
+### 2. Download and Install EMBOSS.
 
 - Download EMBOSS via [ftp](http://emboss.open-bio.org/html/adm/ch01s01.html) or using the [fedora repository](https://src.fedoraproject.org/lookaside/extras/EMBOSS/)
 - Untar the tarball: `tar -xvf EMBOSS-6.6.0.tar.gz`
 - In the new EMBOSS directory, run `./configure --prefix=/Users/$('whoami')/EMBOSS-6.6.0/`
 - Run `make`
 - Run `make install`
-- Make some coffee, it will take a bit to install. 
+- Make some coffee, the last two commands may take a bit to install. 
  
-### 3. edit your ~/.bash_profile
+### 3. Edit your ~/.bash_profile
 
 - Need to include this line: `PATH=$PATH:</directory/containing/Vaccinology_Tools/Heptad_homology>` 
 	- Assuming this is in your home directory, the easiest way to do this is to run:
 
-		 `echo "PATH=$PATH:~/Vaccinology_Tools/Heptad_homology" >> ~/.bash_profile && source ~/.bash_profile`
+	`echo "PATH=$PATH:~/Vaccinology_Tools/Heptad_homology" >> ~/.bash_profile && source ~/.bash_profile`
 
 ### 4. Ensure the heptad_id file is executable
 
 - Check the permissions on the file to make sure you are able to execute it.
-	- Easiest way to check is to `cd` to the `/Vaccinology_Tools/Heptad_homology` directory and run `ls -la`
+	- Easiest way to check is to `cd` to the `~/Vaccinology_Tools/Heptad_homology` directory and run `ls -la`
+	- If you need to add the executable flag, just run `chmod +x heptad_id`
+
+## Installation for Linux
+
+#### 1. Clone this git repo
+
+- `git clone https://github.com/michellearanha/Vaccinology_Tools.git`
+
+#### 2. Download and Install EMBOSS
+
+- Download EMBOSS via [ftp](http://emboss.open-bio.org/html/adm/ch01s01.html) or using the [fedora repository](https://src.fedoraproject.org/lookaside/extras/EMBOSS/)
+- Install the x11 development libraries: 
+	- Debian and Ubuntu:`sudo apt install libx11-dev`
+	- Rhel and Centos: `sudo yum install libX11-devel`
+	- **_NOTE:_** The next command will complain if you dont install these. 
+- Untar the tarball: `tar -xvf EMBOSS-6.6.0.tar.gz`
+- In the new EMBOSS directory, run `./configure --prefix=/home/$('whoami')/EMBOSS-6.6.0/`
+- Run `make`
+- Run `make install`
+- Make some coffee, the last two commands may take a bit to install. 
+
+#### 3. Edit your ~/.bashrc
+
+- Need to include this line: `PATH=$PATH:</directory/containing/Vaccinology_Tools/Heptad_homology>` 
+	- Assuming this is in your home directory, the easiest way to do this is to run:
+
+		 `echo "PATH=$PATH:~/Vaccinology_Tools/Heptad_homology" >> ~/.bashrc && source ~/.bashrc`
+
+#### 4. Ensure the heptad_id file is executable
+
+- Check the permissions on the file to make sure you are able to execute it.
+	- Easiest way to check is to `cd` to the `~/Vaccinology_Tools/Heptad_homology` directory and run `ls -la`
 	- If you need to add the executable flag, just run `chmod +x heptad_id`
 
 ## Options for heptad_id
@@ -83,10 +111,17 @@ These instructions are assuming you are compiling and using this software in you
 
 #### Specific examples:
 
-`heptad_id -f seq.fasta -r register.txt -c Identity -t 25 -E /Users/$('whoami')/EMBOSS-6.6.0/bin -A needle`
+Macos:
 
-`heptad_id -f seq.fasta -r register.txt -c Similarity -t 60 -E /Users/$('whoami')/EMBOSS-6.6.0/bin -A water`
+`heptad_id -f ~/Vaccinology_Tools/Heptad_homology/seq.fasta -r ~/Vaccinology_Tools/Heptad_homology/register.txt -c Identity -t 25 -E ~/EMBOSS-6.6.0/bin -A needle`
 
+`heptad_id -f ~/Vaccinology_Tools/Heptad_homology/seq.fasta -r ~/Vaccinology_Tools/Heptad_homology/register.txt -c Similarity -t 60 -E ~/EMBOSS-6.6.0/bin -A water`
+
+Linux:
+
+`heptad_id -f ~/Vaccinology_Tools/Heptad_homology/seq.fasta -r ~/Vaccinology_Tools/Heptad_homology/register.txt -c Identity -t 25 -E ~/EMBOSS-6.6.0/bin -A needle`
+
+`heptad_id -f ~/Vaccinology_Tools/Heptad_homology/seq.fasta -r ~/Vaccinology_Tools/Heptad_homology/register.txt -c Similarity -t 60 -E ~/EMBOSS-6.6.0/bin -A water`
 
 ## Definitions and Long Explanations
 
