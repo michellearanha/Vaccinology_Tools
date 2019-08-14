@@ -128,6 +128,8 @@ These instructions are assuming you are compiling and using this software in you
 
 `sliding_debug1 -f seq.fasta -w 10 -g 4 -t 25 -c Identity -E /Users/$(whoami)/EMBOSS-6.6.0/bin -A needle -l 40 -D NTC6`
 
+`sliding_debug1 -f seq.fasta -w 15 -g 4 -t 40 -c Similarity -E /Users/$(whoami)/EMBOSS-6.6.0/bin -A needle -l 50 -D NTC6_similarity`
+
 `heptad_id -f seq.fasta -r register.txt -c Identity -t 25 -E /Users/$('whoami')/EMBOSS-6.6.0/bin -A needle`
 
 `heptad_id -f seq.fasta -r register.txt -c Similarity -t 60 -E /Users/$('whoami')/EMBOSS-6.6.0/bin -A water`
