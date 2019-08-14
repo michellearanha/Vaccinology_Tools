@@ -57,7 +57,7 @@ These instructions are assuming you are compiling and using this software in you
   
  - gap size
  
-`-l [<integer>] (3) (Input)`
+`-l [<integer>] (50) (Input)`
   
  - Length of the largest sequence
 
