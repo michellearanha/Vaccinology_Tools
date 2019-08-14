@@ -118,7 +118,8 @@ These instructions are assuming you are compiling and using this software in you
 
 #### Running a sliding window
 
-`slide -f {fasta file with sequences} -w {window size} -g {gap size} -l {length of sequences} -o {output folder}`
+`sliding_debug1 [-f <file:fasta file with sequences>][-w <integer:window size>][-g <integer:gap size>][-l <integer:length of longest sequence>][-c <String:Criteria-Identity/Similarity>][-t<threshold: Percentage>][-E <Directory_of_EMBOSS_program>] [-A <alignment_algorithm>][-D <String:prefix for output folder>]`
+
 
 #### Running a heptad homology program
 
