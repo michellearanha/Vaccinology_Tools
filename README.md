@@ -103,11 +103,11 @@ These instructions are assuming you are compiling and using this software in you
 
 #### Running a sliding window
 
-`slide -f {fasta file with sequences} -w {window size} -g {gap size} -l {length of sequences} -o {output folder}`
+`sliding_debug1 [-f <file:fasta file with sequences>] [-w <window size>] [-g <gap size>]  [-t <threshold: percentage>] [-c <String:Criteria-Identity/Similarity>]  [-E <Directory_of_EMBOSS_program>] [-A <alignment_algorithm>] [-l <length of the longest sequence>] [-D <output folder name>] `
 
 #### Running a heptad homology program
 
-`heptad_id [-f <file:fasta file with sequences>][-r <file:heptad register file>][-c <String:Criteria-Identity/Similarity>][-t<threshold: Percentage>][-E <Directory_of_EMBOSS_program>] [-A <alignment_algorithm>]`
+`heptad_id [-f <file:fasta file with sequences>][-r <file:heptad register file>][-c <String:Criteria-Identity/Similarity>][-t<threshold: percentage>][-E <Directory_of_EMBOSS_program>] [-A <alignment_algorithm>]`
 
 #### Specific examples:
 
