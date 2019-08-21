@@ -1,25 +1,3 @@
-Skip to content
- 
-Search or jump to…
-
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@michellearanha 
-Learn Git and GitHub without any code!
-Using the Hello World guide, you’ll start a branch, write comments, and open a pull request.
-
- 
-2
-0 0 michellearanha/Vaccinology_Tools Private
- Code  Issues 0  Pull requests 0  Projects 0  Security  Insights  Settings
-Vaccinology_Tools/New_ReadMe
-@michellearanha michellearanha Create New_ReadMe
-fe0313a 2 minutes ago
-135 lines (77 sloc)  8.62 KB
-    
 # Vaccinology Tools
 
 Determine cross-reactivity between peptide sequences based on short sliding windows and/or helical wheel homology of coiled-coil proteins
@@ -153,5 +131,4 @@ Consider a set of potentially cross reactive protein sequences that are related 
 A standard or canonical coiled coil structure is built by two or more helices twisting around each other forming bundles with their side chains interlocking in a ‘knobs’ into ‘holes’ packing. The regular meshing of knobs into holes packing requires recurrent positions of the side-chains every seven residues along the helix interface. This seven-residue sequence repeat is called a heptad repeat and the positions in the heptad repeat are labelled a-g. The core forming positions (a and d) are usually occupied by hydrophobic residues whereas the remaining, solvent exposed positions (b, c, e, f and g) are dominated by hydrophilic residues. For proteins with coiled-coil secondary structure, machine learned models implemented in webservers exist that can assign the residues to the heptad pattern seen in coiled-coil proteins. We compared the assignment of individual residues in a coiled coil sequence to the heptad by the program MARCOIL (website) and found that it was identical to the actual heptad assignment of three M protein coiled coil crystal structures (pdb ids: 2oto, 5hyt, 5hzp) that were of interest to us. Similar assignments can also be done using NCOILS, PCOILS. 
 
 The tool requires three inputs 1) a text file with the sequences of all vaccine and non-vaccine types in the fasta format, 2) a text file with identifiers/headers of the fasta sequences without ‘>’ character 3) a file with the heptad registers of all sequences (assigned heptad position of the first residue of all sequences) which can be obtained using MARCOIL. The identity at corresponding heptad positions of each peptide/protein with every other peptide/protein in the given set is output in a tabular format. Additionally, an output is also provided as a matrix in tabular format that contains heptad identity of every sequence with every other sequence which can be clustered to obtain clusters of cross-reactive peptides. An R-based script for clustering is also provided. 
-
 
