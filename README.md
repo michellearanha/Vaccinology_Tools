@@ -111,6 +111,10 @@ These instructions are assuming you are compiling and using this software in you
 
 #### Specific examples:
 
+`sliding_debug1 -f ~/Vaccinology_Tools/Heptad_homology/seq.fasta -w 10 -g 4 -t 25 -c Identity -E ~/EMBOSS-6.6.0/bin/bin -A needle -l 40 -D ~/Vaccinology_Tools/Heptad_homology/NTC6`
+
+`sliding_debug1 -f ~/Vaccinology_Tools/Heptad_homology/seq.fasta -w 15 -g 4 -t 50 -c Similarity -E ~/EMBOSS-6.6.0/bin/bin -A needle -l 40 -D ~/Vaccinology_Tools/Heptad_homology/NTC6`
+
 `heptad_id -f ~/Vaccinology_Tools/Heptad_homology/seq.fasta -r ~/Vaccinology_Tools/Heptad_homology/register.txt -c Identity -t 25 -E ~/EMBOSS-6.6.0/bin -A needle`
 
 `heptad_id -f ~/Vaccinology_Tools/Heptad_homology/seq.fasta -r ~/Vaccinology_Tools/Heptad_homology/register.txt -c Similarity -t 60 -E ~/EMBOSS-6.6.0/bin -A water`
