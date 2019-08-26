@@ -6,7 +6,7 @@ Determine cross-reactivity between peptide sequences based on short sliding wind
 
 1. Linux or macOS based operating system
 2. [EMBOSS program](http://emboss.open-bio.org/html/adm/ch01s01.html)
- - **_NOTE:_** The download instructions above include an FTP site. If you are unable to download from websites via FTP, try [this fedora repo](https://src.fedoraproject.org/lookaside/extras/EMBOSS/) in stead.
+ - **_NOTE:_** The download instructions above include an FTP site. If you are unable to download from websites via FTP, try [this fedora repo](https://src.fedoraproject.org/lookaside/extras/EMBOSS/) instead.
 
 ## Installation Instructions for MacOS
 
