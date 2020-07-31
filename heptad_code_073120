@@ -1,0 +1,488 @@
+#!/bin/bash
+
+rm *.faa *.needle *.dat *.out *.csv
+
+# colon after letter - needs arguments; colon before the first letter needs supress errors
+while getopts "f:r:c:t:E:A:w:o:" OPTION; do
+    case "${OPTION}" in
+        f)
+            f=${OPTARG}
+            ;;
+        r)
+            r=${OPTARG}
+            ;;
+        c)
+            c=${OPTARG}
+            ;;
+        t)
+            t=${OPTARG}
+            ;;
+         E)
+            E=${OPTARG}
+            ;;
+         A)
+            A=${OPTARG}
+            ;;
+	 w)
+	    w=${OPTARG}
+	    ;;
+	*)
+            echo "some option"
+            ;;
+    esac
+done
+shift $((OPTIND-1))
+echo "you have chosen the following options"
+
+echo "f = ${f}"
+echo "r = ${r}"
+echo "c = ${c}"
+
+echo " 
+all options/flag description
+-f {fasta filename}
+-r {heptad register filename}
+-c {Criterion - sequence identity/ sequence similarity}
+-t {Threshold/cutoff for criterion}
+-E {Emboss directory path}
+-A {alignment local (water) or global (needle)}
+-w {window input boolean, 1=hard coded window size, 0= window size is the length of the shortest sequence}
+"
+
+fasta_all_filename=${f}
+heptad_register_file=${r}
+criteria=${c}
+seq_identity_threshold=${t}
+EMBOSS=${E}
+aln_alg=${A}
+window_input=${w}
+
+#window_input is boolean 1 or 0, 1=default_window_size which is hard coded, 0= calculated window size equal to the length of the shortest sequence
+
+<<COMMENT1
+#Only for testing
+fasta_all_filename="file.fasta"
+heptad_register_file="heptad_register.txt"
+criteria="Identity"
+seq_identity_threshold=45
+EMBOSS=""
+aln_alg="needle"
+window_input=1
+#End of only for testing
+COMMENT1
+
+
+permissible_length_of_the_shortest_sequence=16
+decision_ratio_of_shortest_sequence=0.5
+default_window_size=40
+gap=7 # counting from the first residue of the sequence and then going to the gap+1th sequence
+
+mkdir RESULTS
+
+#fasta_all_filename="117Mtypes.fasta"
+fasta_headers_file="headers_file.txt"
+#heptad_register_file="register.inp"
+
+
+# take the header names fromt he fasta file
+awk 'NR % 2 == 1' $fasta_all_filename > $fasta_headers_file
+# remove the > symbol from the fasta header
+sed 's/^.//' $fasta_headers_file >tempfile && mv tempfile $fasta_headers_file
+
+
+#criteria="Identity"   #Can be identity or Similarity beware caps sesitive
+#seq_identity_threshold=45
+#seq_len=50
+#window_size=15
+#gap=1 # gap between windows
+#n_windows=$((((seq_len - window_size)/gap) + 1))
+
+#array contains sequence headers as in fasta file
+#declare -a emmtypes=("emm_1_1-50" "emm_2_1-50" "emm_9_1-50" "emm_15_1-50" "emm_49_1-50" "emm_50_1-50" "emm_73_1-50" "emm_77_1-50" "emm_84_1-50" "emm_89_1-50" "emm_102_1-50" "emm_112_1-50" "emm_114_1-50" "emm_118_1-50" "emm_124_1-50" "emm_175_1-50" "emm_183_1-50" "emm_227_1-50" "emm_232_1-50" "emm_238_1-50" "emm_239_1-50")
+
+declare -a emmtypes
+emmtypes=(`cat "$fasta_headers_file"`)
+
+#array contains start heptad register of each sequence, each number denotes a heptad alphabet 
+#1=a, 2=b, 3=c, 4=d, 5=e, 6=f, 7=g 
+#declare -a heptad_register=("1" "7" "5" "1" "7" "1" "6" "1" "1" "1" "5" "4" "6" "1" "6" "5" "2" "5" "5" "1" "1")
+
+declare -a heptad_register
+heptad_register=(`cat "$heptad_register_file"`)
+
+
+awk '/^>/{if (l!="") print l; print; l=0; next}{l+=length($0)}END{print l}' $fasta_all_filename  |paste - - > seq_length.dat
+sort -k2 -nr seq_length.dat | head -1 > longest_sequence.dat
+sort -k2 -nr seq_length.dat | tail -1 > shortest_sequence.dat
+value1=$(echo | awk '{print $2}' shortest_sequence.dat)
+value2=$(echo | awk '{print $2}' longest_sequence.dat)
+
+echo "$value1"
+echo "$value2"
+
+
+
+if [ $value1 -gt $permissible_length_of_the_shortest_sequence ]
+then
+echo "sequence length long enough for analysis, you are good to go"
+else
+echo "sequence too short, consider using longer sequences; analysis stopped"
+exit 1
+fi
+
+ratio_check=`echo "$value1/$value2" | bc -l`
+echo "This is the ratio of the shortest to the longest sequences:"$ratio_check" . If ratio is less than 0.52, will break the sequence into fragments of length equal to the length of the smallest sequence."
+
+
+### start condition check to see if the sequences are not of comparable length, and take action if condition is met by breaking up the sequences into smaller window####
+
+#https://stackoverflow.com/questions/8654051/how-to-compare-two-floating-point-numbers-in-bash
+
+
+if (( $(echo "$ratio_check < $decision_ratio_of_shortest_sequence" |bc -l) ));
+
+then
+
+if [ $window_input -eq "1" ]
+then 
+window_size=$default_window_size
+else
+window_size=$value1
+fi
+
+touch new_fasta_file.fasta
+touch new_register.txt
+
+
+for p in "${!emmtypes[@]}"
+do
+echo "$p"
+echo "${emmtypes[@]}"
+echo "${emmtypes[$p]}"
+
+grep -A1 "${emmtypes[$p]}" "$fasta_all_filename" >> "${emmtypes[$p]}".faa
+#deleted count characters with fpat
+#awk -v FPAT='[^[:space:]]' '{ print NF }' "${emmtypes[$p]}".faa > count_characters_seq_length.dat
+awk '{ print length }' "${emmtypes[$p]}".faa > count_characters_seq_length.dat
+seq_len=$(sed -n '2p' count_characters_seq_length.dat)
+n_windows=$((((seq_len - window_size)/gap) + 1))
+
+register="${heptad_register[$p]}"
+echo $register
+
+for q in `seq 1 $n_windows`
+do
+l=$((q+(q-1)*(gap-1)))
+k=$((l+$window_size-1))
+sed -n 2p "${emmtypes[$p]}".faa | cut -c${l}-${k} > "${emmtypes[$p]}"_"window""$q".faa
+echo ">"${emmtypes[$p]}"_"window""$q""  >> new_fasta_file.fasta
+cat new_fasta_file.fasta "${emmtypes[$p]}"_"window""$q".faa >> temp_z1.fasta
+mv temp_z1.fasta new_fasta_file.fasta
+
+if [ $q -eq "1" ]
+then
+echo $register >> new_register.txt
+else
+x=$((register + $gap))
+
+if [ $x -gt "7" ]
+then
+register=$((x-(x/7)*7))
+
+if [ $register -eq "0" ]
+then
+register="7"
+fi
+
+echo "$register" >> new_register.txt
+else
+register=$x
+echo "$register" >> new_register.txt
+fi
+
+fi
+
+done
+done
+
+fasta_all_filename="new_fasta_file.fasta"
+heptad_register_file="new_register.txt"
+fi
+
+
+
+fasta_headers_file="headers_file_new.txt"
+
+# take the header names fromt he fasta file
+awk 'NR % 2 == 1' $fasta_all_filename > $fasta_headers_file
+# remove the > symbol from the fasta header
+sed 's/^.//' $fasta_headers_file >tempfile && mv tempfile $fasta_headers_file
+
+
+declare -a emmtypes_new
+emmtypes_new=(`cat "$fasta_headers_file"`)
+
+declare -a heptad_register_new
+heptad_register_new=(`cat "$heptad_register_file"`)
+
+
+#array contains heptad positions
+declare -a heptad=("a" "b" "c" "d" "e" "f" "g")
+
+printf "%s\n" "${emmtypes_new[@]}" > emm.csv
+sed 's/_1-50//g' emm.csv > temp1.csv && mv temp1.csv emm.csv
+sed 's/_//g' emm.csv > temp1.csv && mv temp1.csv emm.csv
+
+for i in "${heptad[@]}"
+do
+
+touch ""$i"".faa
+
+done
+
+
+#Code logic- Give heptad register for each emm type and then extract sequence at each heptad for the sequence and store in the fasta file for that heptad for instance in d.faa
+for z in "${emmtypes_new[@]}"
+do
+
+grep -A1 ""$z"" "$fasta_all_filename" > "$z".faa
+s=`sed -n '2p' "$z".faa`;
+
+#https://unix.stackexchange.com/questions/161958/extract-every-nth-character-from-a-string
+temp_heptad_array=($(
+    for ((i=0; i<7; i++))
+    do
+        new=${s:$i:1}
+        for ((j=i+7; j<${#s}; j=j+7))
+        do
+            new="$new${s:$j:1}"
+        done
+        echo "$new"
+    done
+    ))
+
+echo "${temp_heptad_array[@]}"
+
+
+value=$z
+
+for q in "${!emmtypes_new[@]}"; do
+   if [[ "${emmtypes_new[$q]}" = "${value}" ]]; then
+       echo "${q}";
+                if [ ${heptad_register_new[$q]} == 1 ]
+                then
+                echo ">${emmtypes_new[$q]}" >> a.faa
+                echo "${temp_heptad_array[0]}" >> a.faa
+                echo ">${emmtypes_new[$q]}" >> b.faa
+                echo "${temp_heptad_array[1]}" >> b.faa
+                echo ">${emmtypes_new[$q]}" >> c.faa
+                echo "${temp_heptad_array[2]}" >> c.faa
+                echo ">${emmtypes_new[$q]}" >> d.faa
+                echo "${temp_heptad_array[3]}" >> d.faa
+                echo ">${emmtypes_new[$q]}" >> e.faa
+                echo "${temp_heptad_array[4]}" >> e.faa
+                echo ">${emmtypes_new[$q]}" >> f.faa
+                echo "${temp_heptad_array[5]}" >> f.faa
+                echo ">${emmtypes_new[$q]}" >> g.faa
+                echo "${temp_heptad_array[6]}" >> g.faa
+                fi
+
+                if [ ${heptad_register_new[$q]} == 2 ]
+                then
+                echo ">${emmtypes_new[$q]}" >> b.faa
+                echo "${temp_heptad_array[0]}" >> b.faa
+                echo ">${emmtypes_new[$q]}" >> c.faa
+                echo "${temp_heptad_array[1]}" >> c.faa
+                echo ">${emmtypes_new[$q]}" >> d.faa
+                echo "${temp_heptad_array[2]}" >> d.faa
+                echo ">${emmtypes_new[$q]}" >> e.faa
+                echo "${temp_heptad_array[3]}" >> e.faa
+                echo ">${emmtypes_new[$q]}" >> f.faa
+                echo "${temp_heptad_array[4]}" >> f.faa
+                echo ">${emmtypes_new[$q]}" >> g.faa
+                echo "${temp_heptad_array[5]}" >> g.faa
+                echo ">${emmtypes_new[$q]}" >> a.faa
+                echo "${temp_heptad_array[6]}" >> a.faa
+                fi
+
+                if [ ${heptad_register_new[$q]} == 3 ]
+                then
+                echo ">${emmtypes_new[$q]}" >> c.faa
+                echo "${temp_heptad_array[0]}" >> c.faa
+                echo ">${emmtypes_new[$q]}" >> d.faa
+                echo "${temp_heptad_array[1]}" >> d.faa
+                echo ">${emmtypes_new[$q]}" >> e.faa
+                echo "${temp_heptad_array[2]}" >> e.faa
+                echo ">${emmtypes_new[$q]}" >> f.faa
+                echo "${temp_heptad_array[3]}" >> f.faa
+                echo ">${emmtypes_new[$q]}" >> g.faa
+                echo "${temp_heptad_array[4]}" >> g.faa
+                echo ">${emmtypes_new[$q]}" >> a.faa
+                echo "${temp_heptad_array[5]}" >> a.faa
+                echo ">${emmtypes_new[$q]}" >> b.faa
+                echo "${temp_heptad_array[6]}" >> b.faa
+                fi
+
+                if [ ${heptad_register_new[$q]} == 4 ]
+                then
+                echo ">${emmtypes_new[$q]}" >> d.faa
+                echo "${temp_heptad_array[0]}" >> d.faa
+                echo ">${emmtypes_new[$q]}" >> e.faa
+                echo "${temp_heptad_array[1]}" >> e.faa
+                echo ">${emmtypes_new[$q]}" >> f.faa
+                echo "${temp_heptad_array[2]}" >> f.faa
+                echo ">${emmtypes_new[$q]}" >> g.faa
+                echo "${temp_heptad_array[3]}" >> g.faa
+                echo ">${emmtypes_new[$q]}" >> a.faa
+                echo "${temp_heptad_array[4]}" >> a.faa
+                echo ">${emmtypes_new[$q]}" >> b.faa
+                echo "${temp_heptad_array[5]}" >> b.faa
+                echo ">${emmtypes_new[$q]}" >> c.faa
+                echo "${temp_heptad_array[6]}" >> c.faa
+                fi
+
+                if [ ${heptad_register_new[$q]} == 5 ]
+                then
+                echo ">${emmtypes_new[$q]}" >> e.faa
+                echo "${temp_heptad_array[0]}" >> e.faa
+                echo ">${emmtypes_new[$q]}" >> f.faa
+                echo "${temp_heptad_array[1]}" >> f.faa
+                echo ">${emmtypes_new[$q]}" >> g.faa
+                echo "${temp_heptad_array[2]}" >> g.faa
+                echo ">${emmtypes_new[$q]}" >> a.faa
+                echo "${temp_heptad_array[3]}" >> a.faa
+                echo ">${emmtypes_new[$q]}" >> b.faa
+                echo "${temp_heptad_array[4]}" >> b.faa
+                echo ">${emmtypes_new[$q]}" >> c.faa
+                echo "${temp_heptad_array[5]}" >> c.faa
+                echo ">${emmtypes_new[$q]}" >> d.faa
+                echo "${temp_heptad_array[6]}" >> d.faa
+                fi
+
+                if [ ${heptad_register_new[$q]} == 6 ]
+                then
+                echo ">${emmtypes_new[$q]}" >> f.faa
+                echo "${temp_heptad_array[0]}" >> f.faa
+                echo ">${emmtypes_new[$q]}" >> g.faa
+                echo "${temp_heptad_array[1]}" >> g.faa
+                echo ">${emmtypes_new[$q]}" >> a.faa
+                echo "${temp_heptad_array[2]}" >> a.faa
+                echo ">${emmtypes_new[$q]}" >> b.faa
+                echo "${temp_heptad_array[3]}" >> b.faa
+                echo ">${emmtypes_new[$q]}" >> c.faa
+                echo "${temp_heptad_array[4]}" >> c.faa
+                echo ">${emmtypes_new[$q]}" >> d.faa
+                echo "${temp_heptad_array[5]}" >> d.faa
+                echo ">${emmtypes_new[$q]}" >> e.faa
+                echo "${temp_heptad_array[6]}" >> e.faa
+                fi
+
+                if [ ${heptad_register_new[$q]} == 7 ]
+                then
+                echo ">${emmtypes_new[$q]}" >> g.faa
+                echo "${temp_heptad_array[0]}" >> g.faa
+                echo ">${emmtypes_new[$q]}" >> a.faa
+                echo "${temp_heptad_array[1]}" >> a.faa
+                echo ">${emmtypes_new[$q]}" >> b.faa
+                echo "${temp_heptad_array[2]}" >> b.faa
+                echo ">${emmtypes_new[$q]}" >> c.faa
+                echo "${temp_heptad_array[3]}" >> c.faa
+                echo ">${emmtypes_new[$q]}" >> d.faa
+                echo "${temp_heptad_array[4]}" >> d.faa
+                echo ">${emmtypes_new[$q]}" >> e.faa
+                echo "${temp_heptad_array[5]}" >> e.faa
+                echo ">${emmtypes_new[$q]}" >> f.faa
+                echo "${temp_heptad_array[6]}" >> f.faa
+                fi
+
+        fi
+   done
+unset ${temp_heptad_array[@]}
+done
+
+
+
+for i in "${emmtypes_new[@]}"
+do
+cp emm.csv temp.csv
+touch HEPTAD_ID_""$i"".dat
+
+#for 1 line of context After the match
+#####################added_for_subset_makes_a_seleted_types_file_each_M_sequence##############################
+$EMBOSS/$aln_alg -asequence "$i".faa -bsequence $fasta_all_filename -sprotein1 Y -sprotein2 Y  stdout -gapopen 10.0 -gapextend 0.5>> "$i".needle
+#/Users/ma0/software_installed/EMBOSS-6.6.0/bin/bin/needle -asequence "$i".faa -bsequence $fasta_all_filename -sprotein1 Y -sprotein2 Y  stdout -gapopen 10.0 -gapextend 0.5>> "$i".needle
+grep $criteria "$i".needle >> "$i"_id_per_raw.dat
+awk -F"[()]" '{print $2}' "$i"_id_per_raw.dat >> percent_"$criteria"_final_"$i".out
+paste <(cat emm.csv) <(cat percent_"$criteria"_final_"$i".out)| column -s $'\t' -t > temp3.csv && mv temp3.csv percent_"$criteria"_final_"$i".out
+sed 's/%//g' percent_"$criteria"_final_"$i".out >temp3.csv && mv temp3.csv percent_"$criteria"_final_"$i".out
+awk  -v var="${seq_identity_threshold}" '$2>var' percent_"$criteria"_final_"$i".out  > high_id_w_"$i".out
+cp high_id_w_"$i".out temp_high_id.dat
+list=( $(awk '{print $1}' ./temp_high_id.dat) )
+printf "%s\n" "${list[@]}" > selected_types.txt
+rm temp_high_id.dat
+################################################################
+
+########################for heptad position to position comparison #####################
+for j in "${heptad[@]}"
+do
+
+grep -A1 ""$i"" "$j".faa >> "$i"_"$j".faa
+$EMBOSS/$aln_alg -asequence "$i"_"$j".faa -bsequence "$j".faa -sprotein1 Y -sprotein2 Y  stdout -gapopen 10.0 -gapextend 0.5>> "$i"_"$j".needle
+#/Users/ma0/software_installed/EMBOSS-6.6.0/bin/bin/needle -asequence "$i"_"$j".faa -bsequence "$j".faa -sprotein1 Y -sprotein2 Y  stdout -gapopen 10.0 -gapextend 0.5>> "$i"_"$j".needle
+grep "$criteria" "$i"_"$j".needle >> "$i"_"$j"_"$criteria"_w_all_raw.dat
+awk -F"[()]" '{print $2}' "$i"_"$j"_"$criteria"_w_all_raw.dat >> percent_"$criteria"_final_"$i"_"$j".out
+sed 's/%//g' percent_"$criteria"_final_"$i"_"$j".out > temp22.csv && mv temp22.csv percent_"$criteria"_final_"$i"_"$j".out
+
+#########################################################################################
+
+paste <(cat temp.csv) <(cat percent_"$criteria"_final_"$i"_"$j".out) | column -s $'\t' -t > temp3.csv && mv temp3.csv temp.csv
+done
+mv temp.csv HEPTAD_ID_""$i"".dat
+echo -e "emm_types\ta."$i"\tb."$i"\tc."$i"\td."$i"\te."$i"\tf."$i"\tg."$i"" | cat - HEPTAD_ID_""$i"".dat > /tmp/out && mv /tmp/out HEPTAD_ID_""$i"".dat
+grep -w -F -f selected_types.txt HEPTAD_ID_""$i"".dat > THRESHOLD_SELECTED_HEPTAD_ID_""$i"".dat
+mv HEPTAD_ID_""$i"".dat THRESHOLD_SELECTED_HEPTAD_ID_""$i"".dat RESULTS/
+done
+
+
+cp emm.csv temp5.csv
+echo -e "emm_types" | cat - temp5.csv > /tmp/out && mv /tmp/out temp5.csv
+cp temp5.csv RESULTS/
+cd RESULTS/
+
+for i in "${emmtypes_new[@]}"
+do
+awk '{$1=""; print $0}' HEPTAD_ID_""$i"".dat > raw_data_to_cluster_""$i"".dat
+paste -d " " temp5.csv raw_data_to_cluster_""$i"".dat >  temp6.csv && mv temp6.csv temp5.csv
+done
+
+
+
+
+#for i in "${emmtypes_new[@]}"
+#do
+#awk '{$1=""; print $0}' HEPTAD_ID_""$i"".dat > raw_data_to_cluster_""$i"".dat
+#paste <(cat temp5.csv) <(cat raw_data_to_cluster_""$i"".dat) | column -s $'\t' -t > temp6.csv && mv temp6.csv temp5.csv
+#done
+
+mv temp5.csv HEPTAD_PERCENT_ID_FEATURES_TO_CLUSTER.dat
+rm raw*.dat
+
+cd ..
+
+mkdir HEPTAD_SITE_FASTA
+mv *.faa HEPTAD_SITE_FASTA
+
+mkdir NEEDLE_FILES
+mv *.needle NEEDLE_FILES
+
+mkdir PERCENTAGE_IDENTITY
+mv *.out  PERCENTAGE_IDENTITY
+rm -r PERCENTAGE_IDENTITY
+
+mkdir HIGH_PERCENTAGE_IDENTITY
+mv high_id* HIGH_PERCENTAGE_IDENTITY
+
+
+rm  *.csv *.dat
+
+
