@@ -1,0 +1,27 @@
+MEMORY - LIMITATIONS
+
+Memory is NOT allocated dynamically, so limits are hard-coded 
+with define's. The relevant constants are in the file globals.h:
+	#define	kLength     11000  
+	#define	kMaxSeqLen  11000  
+	#define	kMaxSeqName  300	 
+The first two define the maximal length of a protein, the 
+third one that of its name.
+These values can be edited followed by re-compilation (make), 
+either to reduce the amount of memory used or to overcome the
+limit where needed.
+
+While I tried to catch exceptions, I do not exclude 
+the possibility of seg-faults under circumstances;
+the code has still to undergo a planned revision to 
+make it more robust. 
+
+The program was tested on the drosophila section of genbank
+(~ 25,000 entries) and seemed to work fine.
+
+Under some output options, the program can produce a huge
+output file, which slows down execution and can cause you
+trouble, if there is insufficient space on your disk.
+Some options are only adequate for the analysis of one sequence,
+use other options, if you are using a large input file.
+
